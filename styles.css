@@ -1,0 +1,365 @@
+/* * styles.css — Professional Navy/Gold Theme 
+ * Updated according to user requirements 
+ */
+
+/* Import Lora (Serif) for headings and Inter (Sans-serif) for body text */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
+
+
+:root{
+  /* 1. Whole website background: Light Grey */
+  --bg: #F0F0F0; /* Slightly richer than #FAFAFA */
+  /* 8. Hero Section Background: Very Light Grey */
+  --surface-light: #F5F5F5;
+  /* Surface: Card background (Pure White for contrast) */
+  --surface: #FFFFFF;
+  
+  /* 3. Primary Color: Deep Teal/Navy Blue (Main Headings, Header BG) */
+  --primary-color: #1A237E; 
+  --primary-600: #101654;
+  
+  /* 2. Accent Color 1: Rich Gold/Bronze (for highlight text, icons, top 3) */
+  --accent-color-gold: #C0884A;
+  
+  /* 9. Action Button Color: Vibrant Medium Blue (Primary Button) */
+  --action-color-blue: #1E88E5;
+  --action-color-hover: #156CB8;
+  
+  /* Warning/Error Color */
+  --warning-color: #D32F2F;
+  
+  /* Standard Border Radius */
+  --radius: 12px;
+}
+
+/* Global Reset and Typography */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: #333;
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Header & Navigation */
+.header .nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.header .nav-menu a:hover {
+    background-color: var(--primary-600);
+}
+
+.header .nav-menu a.active {
+    background-color: var(--accent-color-gold);
+    color: white;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .header .nav-menu {
+        display: none;
+    }
+    .menu-btn {
+        display: block;
+    }
+}
+
+/* Cards & Content */
+.card {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card-subtitle {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-color-gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #555;
+    line-height: 1.6;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rules-list {
+    list-style: disc;
+    padding-left: 20px;
+    color: #555;
+}
+.rules-list li {
+    margin-bottom: 8px;
+}
+
+/* Countdown */
+.countdown-timer {
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--action-color-blue);
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Custom Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.modal-card {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: var(--radius);
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.modal-title {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-family: 'Lora', serif;
+}
+.success-modal {
+    border-top: 4px solid var(--accent-color-gold);
+}
+.error-modal {
+    border-top: 4px solid var(--warning-color);
+}
+
+/* Link Button Group (used on index.js and register.js) */
+.link-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--action-color-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+.link-btn:hover {
+    background-color: var(--action-color-hover);
+    transform: translateY(-2px);
+}
+
+
+/* --- NEW QUIZ PAGE STYLES --- */
+.quiz-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--bg);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.quiz-timer-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    justify-content: center;
+}
+
+#quiz-timer.warning {
+    color: var(--accent-color-gold);
+    animation: pulse-timer 1s infinite alternate;
+}
+
+@keyframes pulse-timer {
+    from { opacity: 1; }
+    to { opacity: 0.7; }
+}
+
+.question-item {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid var(--surface-light);
+    transition: border-color 0.3s ease;
+}
+
+.question-item:hover {
+    border-color: var(--action-color-blue);
+}
+
+.question-text {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.question-number {
+    color: var(--accent-color-gold);
+    margin-right: 5px;
+}
+
+.options-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: var(--surface-light);
+}
+
+.option-label:hover {
+    border-color: var(--action-color-blue);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.option-label.selected {
+    background-color: #e3f2fd; /* Light Blue */
+    border-color: var(--action-color-blue);
+    box-shadow: inset 0 0 5px rgba(30, 136, 229, 0.3);
+}
+
+.option-label.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.option-key {
+    font-weight: 700;
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+/* Submit Button */
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--accent-color-gold);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #a0743b; /* Darker Gold */
+    transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.submit-btn.submitting {
+    background-color: var(--action-color-blue);
+}
+
+/* Spinner for submitting state */
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* General utility states */
+.error-state {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.loading-state {
+    text-align: center;
+    color: #888;
+    padding: 30px 0;
+}
