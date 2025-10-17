@@ -70,7 +70,7 @@ export default function Home() {
         <h2 className="card-title" style={{textAlign: 'center', marginBottom: '10px'}}>How to Participate</h2>
         <ol className="rules-list">
             <li><span style={{fontWeight: '600'}}>Registration:</span> All participants must register to receive a unique Registration ID.</li>
-            <li><span style={{fontWeight: '600'}}>Daily Mystery:</span> A new question is released daily at 12:00 PM IST and remains available upto 04:00 PM IST that day.</li>
+            <li><span style={{fontWeight: '600'}}>Daily Mystery:</span> A new question is released daily at 12:00 PM IST and remains available upto 05:00 PM IST that day.</li>
             <li><span style={{fontWeight: '600'}}>Submission:</span> Use your Registration ID to submit your answer on the <Link href={CONFIG.DAILY_MYSTERY_PATH} style={{color: 'var(--action-color-blue)', textDecoration: 'underline'}}>Daily Quiz Page</Link>. During the period from <span style={{color: 'red'}}>27-10-2025 to 30-10-2025</span></li>
             <li><span style={{fontWeight: '600'}}>Scoring:</span> Correct answers are awarded points, and an updated leaderboard is posted daily.</li>
         </ol>
