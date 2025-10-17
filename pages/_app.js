@@ -61,6 +61,12 @@ export default function MyApp({ Component, pageProps }) {
         <p className="small" style={{marginTop:12}}>&copy; {new Date().getFullYear()} {CONFIG.SITE_TITLE}. All Rights Reserved.</p>
         <p className="small">Developed by Debjit Chakraborty</p>
       </footer>
+      
+      {/* CRITICAL FIX: Inject PapaParse script tag here.
+        This is necessary because you are not using next/script or a _document.js file.
+        This ensures window.Papa is available when daily_quiz.js mounts on the client.
+      */}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     </>
   )
 }

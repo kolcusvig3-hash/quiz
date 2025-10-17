@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { CONFIG, getCurrentDayCode } from '../config'; // Import getCurrentDayCode
 import Link from 'next/link';
@@ -50,7 +51,7 @@ export default function Home() {
   
   // Conditional rendering: use static value on server, dynamic value on client
   const countdownDisplay = isClient ? countdown : 'Loading...';
-
+  
   return (
     <main className="container">
       {/* Hero Section Card */}

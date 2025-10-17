@@ -363,3 +363,122 @@ body {
     color: #888;
     padding: 30px 0;
 }
+
+/* ---------------------------------------------------- */
+/* --- LEADERBOARD SPECIFIC STYLES (Matching Screenshot) --- */
+/* ---------------------------------------------------- */
+
+/* Main Page Title and Subtitle */
+.page-title {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    font-family: 'Inter', sans-serif;
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+/* Leaderboard Card Container */
+.leaderboard-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Stronger shadow than default card */
+    overflow: hidden; /* To contain the header's border-radius */
+    max-width: 900px; /* Constrain the width for a better look */
+    margin: 0 auto;
+}
+
+/* Top Scorers Navy Blue Header Bar */
+.card-header-blue {
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+}
+
+.card-header-blue .header-title {
+    font-family: 'Lora', serif;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-body {
+    padding: 0 30px 20px 30px; /* Adjust padding for the table content */
+}
+
+/* Leaderboard Table Structure */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Table Header Row (#, NAME, SCORE) */
+.leaderboard-table thead th {
+    text-align: left;
+    color: #555; /* Dark gray text */
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 0; /* Vertical spacing for header row */
+    text-transform: uppercase;
+    border-bottom: 1px solid #ddd; /* Subtle separator line below header */
+}
+
+/* Ensure SCORE is right-aligned in the header */
+.leaderboard-table thead th:last-child {
+    text-align: right;
+}
+
+
+/* Table Body Rows */
+.leaderboard-table tbody td {
+    padding: 15px 0; /* Vertical spacing for rows */
+    font-size: 1rem;
+    color: #333; /* Default text color */
+    border-bottom: 1px solid #eee; /* Light separator line */
+    vertical-align: middle;
+}
+
+/* Last row has no bottom border */
+.leaderboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Top 3 Highlighting (Matching the screenshot's light gold background) */
+.leaderboard-table tbody tr.top-3 {
+    background-color: #FFFBEB; /* Very light yellow/gold background */
+    font-weight: 600;
+}
+
+/* Rank Column for Top 3 (using accent color) */
+.leaderboard-table tbody tr.top-3 .rank-cell {
+    color: var(--accent-color-gold); /* Gold color for rank number */
+    font-size: 1.1rem;
+}
+
+/* Score Column for Top 3 (using accent color) */
+.leaderboard-table tbody tr.top-3 .score-cell {
+    color: var(--accent-color-gold); /* Gold color for score */
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Score column for everyone else (Right aligned) */
+.leaderboard-table tbody .score-cell {
+    text-align: right;
+    font-weight: 500;
+    color: #444;
+}
+
+/* Name column alignment and style */
+.leaderboard-table tbody .name-cell {
+    font-weight: 500;
+    color: #333;
+}
