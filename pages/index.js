@@ -57,12 +57,12 @@ export default function Home() {
       {/* Hero Section Card */}
       <div className="hero-card card">
         <h1 className="hero-title">Welcome to the {CONFIG.SITE_TITLE}</h1>
-        <p className="hero-description">The Integrity Mystery is a fun, daily quiz designed to promote vigilance and awareness. Participate daily to test your knowledge and climb the leaderboard!</p>
+        <p className="hero-description">The Integrity Quiz is a fun, daily quiz designed to promote vigilance awareness. Participate daily to test your knowledge and climb the leaderboard!</p>
         
         <div className="link-button-group">
-          <Link href="/register" className="link-btn primary">Register Now</Link>
-          <Link href="/leaderboard" className="link-btn secondary">View Leaderboard</Link>
-        </div>
+          <Link href="/register" className="link-btn primary mr-4">Register Now</Link>
+          <Link href="/leaderboard" className="link-btn secondary">View Leaderboard</Link>
+        </div>
 
         {/* The Rules Section is integrated here as requested by user's theme context */}
         <hr className="divider" style={{border: 'none', borderTop: '1px solid #eee', margin: '20px 0'}} />
@@ -70,8 +70,8 @@ export default function Home() {
         <h2 className="card-title" style={{textAlign: 'center', marginBottom: '10px'}}>How to Participate</h2>
         <ol className="rules-list">
             <li><span style={{fontWeight: '600'}}>Registration:</span> All participants must register to receive a unique Registration ID.</li>
-            <li><span style={{fontWeight: '600'}}>Daily Mystery:</span> A new question is released daily at 12:00 PM IST and remains available for 24 hours.</li>
-            <li><span style={{fontWeight: '600'}}>Submission:</span> Use your Registration ID to submit your answer on the <Link href={CONFIG.DAILY_MYSTERY_PATH} style={{color: 'var(--action-color-blue)', textDecoration: 'underline'}}>Daily Mystery Page</Link>.</li>
+            <li><span style={{fontWeight: '600'}}>Daily Mystery:</span> A new question is released daily at 12:00 PM IST and remains available upto 04:00 PM IST that day.</li>
+            <li><span style={{fontWeight: '600'}}>Submission:</span> Use your Registration ID to submit your answer on the <Link href={CONFIG.DAILY_MYSTERY_PATH} style={{color: 'var(--action-color-blue)', textDecoration: 'underline'}}>Daily Quiz Page</Link>. During the period from <span style={{color: 'red'}}>27-10-2025 to 30-10-2025</span></li>
             <li><span style={{fontWeight: '600'}}>Scoring:</span> Correct answers are awarded points, and an updated leaderboard is posted daily.</li>
         </ol>
 
