@@ -98,10 +98,11 @@ export const QUIZ_DATA = {
     { q: "Q5: When legality and morality conflict, a public servant should?", options: { A: "Always follow orders", B: "Follow moral reasoning consistent with constitutional values", C: "Ignore morality", D: "Delay decision-making" } },
     { q: "Q6: Public office is a public trust. This means?", options: { A: "Officers hold office at the will of the government", B: "Officers act as trustees of public resources and interests", C: "Officers cannot be removed", D: "Officers are politically accountable" } },
     { q: "Q7: An officer facing pressure to favour a bidder should?", options: { A: "Act as per higher’s verbal instruction", B: "Record the instruction in writing and proceed transparently", C: "Ignore the file", D: "Approve for expediency" } },
-    { q: "Q8: A government officer leaks a file to expose corruption but violates the Official Secrets Act. This act is?", options: { A: "Legal but unethical", B: "Illegal but may be ethically justified if public interest outweighs harm", C: "Ethical and legal both", D: "Neither ethical nor legal" } },
+    { q: "Q8: A government employee finds a wallet with ₹5,000 and official documents inside the office premises. The most ethical course of action is to?", options: { A: "Keep the money and discard the documents", B: "Hand it over to the security or lost-and-found section immediately", C: "Wait to see if someone claims it", D: "Take it home for safekeeping" } },
     { q: "Q9: The constitutional value underlying public service ethics is?", options: { A: "Liberty and Equality", B: "Patronage", C: "Expediency", D: "Seniority" } },
     { q: "Q10: The “Ethics Infrastructure” in governance refers to?", options: { A: "IT and data security systems", B: "Institutional mechanisms ensuring ethical conduct", C: "Building construction norms", D: "Internal audit procedures" } },
   ],
+
   D1: [
     { q: "Day 1, Q1: The distinction between ethics and morality lies mainly in?", options: { A: "Ethics are personal, morality is professional", B: "Ethics are societal codes, morality is individual conscience", C: "Morality is collective, ethics are legal", D: "They mean the same" } },
     { q: "Day 1, Q2: The essence of ethical governance is?", options: { A: "Maximizing public utility through just means", B: "Achieving targets irrespective of methods", C: "Maintaining secrecy of decision-making", D: "Rigidly following rules even if unjust" } },
@@ -110,41 +111,44 @@ export const QUIZ_DATA = {
     { q: "Day 1, Q5: According to Kantian ethics, an action is moral if?", options: { A: "It brings happiness", B: "It follows a universal moral law", C: "It yields public approval", D: "It is permitted by superiors" } },
     { q: "Day 1, Q6: Which among the following is not a dimension of good governance?", options: { A: "Rule of law", B: "Responsiveness", C: "Patronage", D: "Accountability" } },
     { q: "Day 1, Q7: If a subordinate commits an ethical violation, the superior’s moral responsibility is?", options: { A: "Nil, unless direct benefit taken", B: "Limited to procedural lapses", C: "Shared, due to command responsibility", D: "Solely disciplinary" } },
-    { q: "Day 1, Q8: During procurement, an officer’s close friend owns one of the bidding firms. The most ethical action is to?", options: { A: "Continue but disclose conflict and recuse", B: "Privately assure neutrality", C: "Suppress relationship", D: "Support friend's bid" } },
+    { q: "Day 1, Q8: You are offered a gift by a client during a festival as a token of appreciation. What should you do as per conduct rules?", options: { A: "Accept without hesitation", B: "Accept and inform superior authority", C: "Decline politely and report the incident", D: "Keep it secret" } },
     { q: "Day 1, Q9: Article 311 of the Constitution ensures?", options: { A: "Political neutrality", B: "Protection to civil servants from arbitrary dismissal", C: "Pension benefits", D: "Secrecy of office" } },
-    { q: "Day 1, Q10: The Integrity Pact introduced by Transparency International aims to?", options: { A: "Prevent corruption in public procurement", B: "Improve wage structure", C: "Encourage privatization", D: "Reduce litigation in contracts" } },
+    { q: "Day 1, Q10: Integrity Pact introduced by Transparency International aims to?", options: { A: "Prevent corruption in public procurement", B: "Improve wage structure", C: "Encourage privatization", D: "Reduce litigation" } },
   ],
+
   D2: [
     { q: "Day 2, Q1: Which philosopher associated virtue with the 'Golden Mean'?", options: { A: "Plato", B: "Aristotle", C: "Immanuel Kant", D: "Confucius" } },
     { q: "Day 2, Q2: “Accountability without transparency leads to…”?", options: { A: "Efficiency", B: "Arbitrary power", C: "Discipline", D: "Team cohesion" } },
     { q: "Day 2, Q3: “A man is honest who does not cheat even when he could do so safely.” This statement refers to?", options: { A: "Fear of law", B: "Legalistic morality", C: "Integrity of character", D: "Procedural compliance" } },
-    { q: "Day 2, Q4: The CVC derives statutory status from?", options: { A: "CVC Act, 2003", B: "Prevention of Corruption Act, 1988", C: "Lokpal Act, 2013", D: "CCS (Conduct) Rules, 1964" } },
+    { q: "Day 2, Q4: The CVC derives statutory status from?", options: { A: "CVC Act, 2003", B: "Prevention of Corruption Act, 1988", C: "Lokpal and Lokayuktas Act, 2013", D: "CCS (Conduct) Rules, 1964" } },
     { q: "Day 2, Q5: “Ends do not justify the means” is a key principle of?", options: { A: "Utilitarianism", B: "Deontological ethics", C: "Virtue ethics", D: "Hedonism" } },
-    { q: "Day 2, Q6: Transparency International measures corruption perception through?", options: { A: "Human Development Index", B: "Corruption Perception Index", C: "Gini Coefficient", D: "WGI Index" } },
-    { q: "Day 2, Q7: Ethical neutrality requires that an officer?", options: { A: "Remain apolitical but not amoral", B: "Avoid ethical reasoning", C: "Support ruling party blindly", D: "Refrain from decision-making" } },
-    { q: "Day 2, Q8: A subordinate offers an expensive gift after a project. The ethical response is?", options: { A: "Accept to maintain goodwill", B: "Accept but donate later", C: "Politely decline and report as per Conduct Rules", D: "Accept in private" } },
+    { q: "Day 2, Q6: Transparency International measures corruption perception through?", options: { A: "Human Development Index", B: "CPI (Corruption Perception Index)", C: "Gini Coefficient", D: "WGI Index" } },
+    { q: "Day 2, Q7: Ethical neutrality requires that an officer?", options: { A: "Remain apolitical but not amoral", B: "Avoid ethical reasoning", C: "Support ruling party policies blindly", D: "Refrain from decision-making" } },
+    { q: "Day 2, Q8: A colleague regularly leaves office early but marks full attendance. What should you do?", options: { A: "Ignore", B: "Confront personally", C: "Report officially through proper channel", D: "Join them" } },
     { q: "Day 2, Q9: The principle of Nemo judex in causa sua promotes?", options: { A: "Natural justice", B: "Bureaucratic hierarchy", C: "Political control", D: "Economic efficiency" } },
-    { q: "Day 2, Q10: The key objective of preventive vigilance is?", options: { A: "Post-facto punishment", B: "Eliminating causes leading to corruption", C: "Strengthening disciplinary rules", D: "Increasing secrecy" } },
+    { q: "Day 2, Q10: The key objective of preventive vigilance is?", options: { A: "Post-facto punishment", B: "Eliminating causes leading to corruption", C: "Strengthening disciplinary rules", D: "Increasing departmental secrecy" } },
   ],
+
   D3: [
     { q: "Day 3, Q1: The term 'public virtue' implies?", options: { A: "Loyalty to political superiors", B: "Courage to act for public good despite personal loss", C: "Following orders without questioning", D: "Avoiding criticism" } },
-    { q: "Day 3, Q2: Emotional intelligence helps a public servant by?", options: { A: "Making decisions based solely on emotions", B: "Enhancing empathy and fairness in official conduct", C: "Weakening rationality", D: "Reducing accountability" } },
+    { q: "Day 3, Q2: Emotional intelligence helps a public servant by?", options: { A: "Making decisions based on emotions", B: "Enhancing empathy and fairness in conduct", C: "Weakening rationality", D: "Reducing accountability" } },
     { q: "Day 3, Q3: Ethical leadership in government is characterized by?", options: { A: "Charismatic speech", B: "Moral courage and example-based governance", C: "Political patronage", D: "Strict subordination" } },
-    { q: "Day 3, Q4: A public servant accepting gratification other than legal remuneration is punishable under?", options: { A: "IPC 409", B: "PC Act, 1988, Section 7", C: "CCS (CCA) Rules", D: "Conduct Rules" } },
-    { q: "Day 3, Q5: Utilitarian ethics judges an action by?", options: { A: "Motive behind it", B: "Legality of it", C: "Consequences for greatest number", D: "Status of doer" } },
-    { q: "Day 3, Q6: Whistleblower protection is vital because?", options: { A: "It rewards informants financially", B: "It promotes silence", C: "It protects individuals exposing corruption", D: "It enables secrecy" } },
+    { q: "Day 3, Q4: A public servant accepting gratification other than legal remuneration is punishable under?", options: { A: "IPC 409", B: "Prevention of Corruption Act, 1988, Section 7", C: "CCS (CCA) Rules", D: "Conduct Rules" } },
+    { q: "Day 3, Q5: Utilitarian ethics judges an action by?", options: { A: "The motive behind it", B: "The legality of it", C: "The consequences it produces for the greatest number", D: "The status of the doer" } },
+    { q: "Day 3, Q6: Whistleblower protection is vital because?", options: { A: "It rewards informants financially", B: "It protects individuals exposing corruption", C: "It promotes a culture of silence", D: "It enables secrecy" } },
     { q: "Day 3, Q7: Which of the following best exemplifies integrity under pressure?", options: { A: "Resisting temptation despite anonymity", B: "Acting ethically only under supervision", C: "Hiding mistakes", D: "Transferring responsibility" } },
-    { q: "Day 3, Q8: A citizen offers bribe to expedite legitimate service. The officer should?", options: { A: "Accept", B: "Reject and report attempt", C: "Ignore", D: "Negotiate" } },
-    { q: "Day 3, Q9: Which of these commissions emphasized “Ethics in Governance”?", options: { A: "2nd Administrative Reforms Commission", B: "Punchhi Commission", C: "Sarkaria Commission", D: "Vohra Committee" } },
+    { q: "Day 3, Q8: The foundation of moral conduct in public service is built upon?", options: { A: "Fear of punishment", B: "Desire for recognition", C: "Conscience and sense of duty", D: "Compliance to hierarchy" } },
+    { q: "Day 3, Q9: Which of these commissions emphasized “Ethics in Governance” as a reform area?", options: { A: "2nd Administrative Reforms Commission", B: "Punchhi Commission", C: "Sarkaria Commission", D: "Vohra Committee" } },
     { q: "Day 3, Q10: Ethical competence in civil service includes?", options: { A: "Knowledge, skills, and moral judgment", B: "Technical proficiency only", C: "Legal compliance only", D: "Political adaptability" } },
   ],
+
   D4: [
-    { q: "Day 4, Q1: The distinction between legal and ethical behavior is that?", options: { A: "Law is mandatory, ethics is voluntary", B: "Ethics are enforced by court", C: "Law changes frequently", D: "Ethics is political" } },
+    { q: "Day 4, Q1: The term 'public virtue' implies?", options: { A: "Loyalty to political superiors", B: "Courage to act for the public good despite personal loss", C: "Following orders without questioning", D: "Avoiding personal criticism" } },
     { q: "Day 4, Q2: The essence of integrity testing is to?", options: { A: "Detect corruption through traps", B: "Assess moral character consistency", C: "Promote secrecy", D: "Encourage competition" } },
     { q: "Day 4, Q3: Probity in governance implies?", options: { A: "Public life conducted with transparency and accountability", B: "Rigid obedience", C: "Blind loyalty", D: "Fear of punishment" } },
     { q: "Day 4, Q4: Vigilance angle does not include?", options: { A: "Irregularities in financial transactions", B: "Administrative inefficiency", C: "Illegal gratification", D: "Disproportionate assets" } },
     { q: "Day 4, Q5: Deontological ethics emphasizes?", options: { A: "Consequences", B: "Duties and moral obligations", C: "Personal pleasure", D: "Public opinion" } },
-    { q: "Day 4, Q6: Good governance requires?", options: { A: "Transparency and accountability", B: "Strict secrecy", C: "Delay in decision", D: "Political patronage" } },
+    { q: "Day 4, Q6: Good governance requires?", options: { A: "Transparency and accountability", B: "Strict secrecy", C: "Delay in decision-making", D: "Political patronage" } },
     { q: "Day 4, Q7: Ethical fading means?", options: { A: "Ignoring moral dimension due to pressure", B: "Applying ethics excessively", C: "Avoiding decision", D: "Following morality blindly" } },
     { q: "Day 4, Q8: Reporting misuse of government vehicle by senior through proper channel indicates?", options: { A: "Disobedience", B: "Moral courage", C: "Mutiny", D: "Political bias" } },
     { q: "Day 4, Q9: Code of Conduct differs from Code of Ethics in that?", options: { A: "It prescribes punishments", B: "It is advisory and broader in spirit", C: "It is legally binding", D: "It applies only to ministers" } },
@@ -152,9 +156,3 @@ export const QUIZ_DATA = {
   ],
 };
 
-
-
-// If you publish the sheet as CSV, set this export:
-// export const LEADERBOARD_PUBLISHED_CSV ='https://docs.google.com/spreadsheets/d/e/2PACX-1vSmrHbOOPLY3oWdXomNTY9cJPhPxUuR-U9bCrSgah-lvXxYagjM435ZEFo7lpzIZH46phf_q6mjdNoT/pub?gid=1336730465&single=true&output=csv';
-
-// export const LOGO = '/logo/customs.jpg';
