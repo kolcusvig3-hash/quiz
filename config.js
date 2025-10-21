@@ -76,7 +76,7 @@ export const getCurrentDayCode = () => {
   const todayIST = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).split('/');
   const todayYYYYMMDD = `${todayIST[2]}-${todayIST[0].padStart(2, '0')}-${todayIST[1].padStart(2, '0')}`;
 
-  let currentCode = 'Day0'; // Default to Practice set
+  let currentCode = 'D0'; // Default to Practice set
 
   for (const day of DAY_CODE_MAP) {
     if (todayYYYYMMDD >= day.date) {
@@ -90,7 +90,7 @@ export const getCurrentDayCode = () => {
 
 // Day Code: The key must match the value returned by getCurrentDayCode()
 export const QUIZ_DATA = {
-  Day0: [
+  D0: [
     { q: "Q1: The primary function of Customs is?", options: { A: "Collecting Income Tax", B: "Facilitating Trade and Securing Borders", C: "Issuing Passports", D: "Managing Railways" } },
     { q: "Q2: What does IGST stand for?", options: { A: "Internal Goods and Service Tax", B: "Integrated Goods and Service Tax", C: "India Global Service Tax", D: "Inter-state Goods Supply Tax" } },
     { q: "Q3: The concept of integrity focuses on?", options: { A: "External appearance", B: "Adherence to moral and ethical principles", C: "Speed of work", D: "Political affiliation" } },
