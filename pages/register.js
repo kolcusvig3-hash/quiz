@@ -127,7 +127,7 @@ export default function Register() {
             lineHeight: "1.4",
           }}
         >
-          Register with your details. After registration, you will receive a{" "}
+          Register with your details (GMAIL preferred). After registration, you will receive a{" "}
           <b>Registration ID</b> via email. This ID is mandatory for answer
           submission. Contact <b>kolcusvig3@gmail.com</b> for queries.
         </p>
@@ -176,7 +176,7 @@ export default function Register() {
             <input
               id="emailId"
               type="email"
-              placeholder="Your valid email address"
+              placeholder="Your valid email address - GMAIL preferred"
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
               disabled={isSubmitting}

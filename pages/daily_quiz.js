@@ -157,6 +157,25 @@ const FloatingTimer = ({ secondsLeft, quizStarted, submissionCompleted }) => {
 // --- MAIN COMPONENT ---
 
 export default function DailyQuiz() {
+
+    {/* --- TIME RESTRICTION BLOCK (Admin can comment this entire block to disable restriction for testing) --- */}
+const [isRegInputActive, setIsRegInputActive] = useState(false);
+
+useEffect(() => {
+  const checkTimeWindow = () => {
+    const now = new Date();
+    const hoursIST = now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false });
+    const currentHour = parseInt(hoursIST, 10);
+    setIsRegInputActive(currentHour >= 12 && currentHour < 17); // Active between 12 PM and 5 PM IST
+  };
+  
+  checkTimeWindow();
+  const interval = setInterval(checkTimeWindow, 60000); // Recheck every minute
+  return () => clearInterval(interval);
+}, []);
+{/* --- END OF TIME RESTRICTION BLOCK --- */}
+
+
     // Determine the current quiz day based on system time (IST)
     const dayCode = useMemo(() => getCurrentDayCode(), []);
     // Use D0 for testing/fallback if the specific day's quiz isn't defined
@@ -601,24 +620,13 @@ export default function DailyQuiz() {
                             <h3 className="font-bold text-indigo-800 text-lg mb-2">Instructions:</h3>
                             <ul className="list-disc list-inside ml-2 text-base space-y-1">
                                 <li>Enter your **Registration ID** to begin.</li>
+                                <li>If you have Registered today itself then please wait for 10 minutes and then try to begin.</li>
                                 <li>The quiz consists of **10 Multiple Choice Questions**.</li>
                                 <li>You have **{formatTime(MAX_TIME_SECONDS)}** minutes to complete the quiz.</li>
                                 <li>**Only one submission is permitted per Registration ID** for this day.</li>
                             </ul>
                             
-                            {/* ⭐ REMOVED TIMER DISPLAY FROM HERE ⭐
-                            {quizStarted && (
-                                <div className="quiz-timer-container">
-                                    <Clock size={20} style={{ marginRight: '8px' }} />
-                                    <div 
-                                        id="quiz-timer" 
-                                        className={secondsLeft <= 60 && secondsLeft > 0 ? 'warning' : (secondsLeft <= 0 ? 'error-state' : '')}
-                                    >
-                                        {formatTime(secondsLeft)}
-                                    </div>
-                                </div>
-                            )}
-                            */}
+                            
                             
                         </div>
 
@@ -632,19 +640,32 @@ export default function DailyQuiz() {
                         {!quizStarted && !submissionCompleted && (
                             <div className="flex flex-col md:flex-row items-end gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                                 <div className="input-area flex-grow w-full">
-                                    <label htmlFor="regId" className="block text-sm font-medium text-gray-700 mb-1">Registration ID</label>
-                                    <input
-                                        id="regId"
-                                        className="input"
-                                        type="text"
-                                        placeholder="Enter registration ID"
-                                        value={regId}
-                                        onChange={(e) => setRegId(e.target.value.toUpperCase().trim())}
-                                        disabled={quizStarted || submissionCompleted || isValidating || isSubmitting}
-                                        required
-                                    />
-                                </div>
-                                
+  <label htmlFor="regId" className="block text-sm font-medium text-gray-700 mb-1">
+    Registration ID <span className="text-gray-500 text-xs">(Active between 12 PM – 5 PM only)</span>
+  </label>
+  <input
+    id="regId"
+    className="input"
+    type="text"
+    placeholder="Enter registration ID"
+    value={regId}
+    onChange={(e) => setRegId(e.target.value.toUpperCase().trim())}
+    disabled={
+      quizStarted ||
+      submissionCompleted ||
+      isValidating ||
+      isSubmitting ||
+      !isRegInputActive // <-- disables input outside 12–5 PM
+    }
+    required
+  />
+  {!isRegInputActive && (
+    <p className="text-sm text-red-500 mt-1">
+      Registration input is currently inactive. Please enter between 12 PM – 5 PM IST.
+    </p>
+  )}
+</div>
+
                                 <button 
                                     className="w-full md:w-auto mt-2 md:mt-0"
                                     onClick={handleStartQuiz} 
