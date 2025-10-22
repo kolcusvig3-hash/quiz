@@ -37,7 +37,7 @@ export default function MyApp({ Component, pageProps }) {
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
 
   const DISCLAIMER_TEXT = `
-    This website is a voluntary initiative created for the specific purpose of conducting the "Integrity Mystery" quiz during Vigilance Awareness Week ${new Date().getFullYear()}. 
+    This website is a voluntary initiative created for the specific purpose of conducting the "Integrity Quiz" during Vigilance Awareness Week ${new Date().getFullYear()}. 
     This platform is hosted on a third-party, non-government server and does not represent the official digital infrastructure of the Kolkata Customs, Customs Department, or the Government of India.
     Any personal information collected is gathered solely for the purposes of running the quiz, calculating scores, and internal event reporting. This data will not be shared with any external third parties and will be deleted or anonymized upon the conclusion of the event.
     The organizers are not responsible for any technical failures, data loss, or security issues that may arise from using this third-party hosting service. Participation is voluntary and at the user's own risk.
