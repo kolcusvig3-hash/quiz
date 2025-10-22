@@ -125,6 +125,34 @@ const QuizItem = ({ index, question, options, selectedAnswer, onSelect, disabled
     );
 };
 
+/**
+ * Renders a fixed (floating) timer for continuous visibility.
+ * ⭐ NEW COMPONENT FOR FLOATING TIMER ⭐
+ */
+const FloatingTimer = ({ secondsLeft, quizStarted, submissionCompleted }) => {
+    // Only display if the quiz has started and hasn't been completed
+    if (!quizStarted || submissionCompleted) return null;
+
+    const timerClass = secondsLeft <= 60 && secondsLeft > 0 
+        ? 'warning' 
+        : (secondsLeft <= 0 ? 'error-state' : '');
+
+    return (
+        <div className="fixed-timer-container">
+            <div 
+                id="quiz-timer-floating" 
+                className={`fixed-timer-text ${timerClass}`}
+                // Use inline styles to override the color based on timer state
+                style={{ color: secondsLeft <= 0 ? '#DC2626' : (secondsLeft <= 60 ? '#FBBF24' : '#1F2937') }}
+            >
+                {/* Clock icon with a fixed color */}
+                <Clock size={24} style={{ marginRight: '8px', color: '#4F46E5' }} /> 
+                {formatTime(secondsLeft)}
+            </div>
+        </div>
+    );
+};
+
 
 // --- MAIN COMPONENT ---
 
@@ -520,6 +548,36 @@ export default function DailyQuiz() {
                     }
                     .submit-btn:hover:not(:disabled) { background-color: var(--submit-hover-color); }
                     .submit-btn.submitting { background-color: #FBBF24; color: var(--primary-color); } /* Amber 400 */
+                    
+                    /* ⭐ NEW FLOATING TIMER CSS ⭐ */
+                    .fixed-timer-container {
+                        position: fixed; /* Key for floating effect */
+                        bottom: 20px;    /* 20px from the bottom edge */
+                        right: 20px;     /* 20px from the right edge */
+                        z-index: 40;     /* Ensures it stays above all other content */
+                        
+                        /* Styling matching the existing timer look */
+                        background-color: white;
+                        border: 2px solid #4F46E5; /* Indigo 600 */
+                        padding: 12px;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                        min-width: 120px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .fixed-timer-text {
+                        font-weight: 700;
+                        font-size: 1.25rem; /* Equivalent to text-xl */
+                        display: flex;
+                        align-items: center;
+                    }
+                    .fixed-timer-text.warning { color: var(--warning-color, #FBBF24); }
+                    .fixed-timer-text.error-state { color: #DC2626; } 
+                    
                 `}</style>
 
                 {/* Custom Notification Modal */}
@@ -547,6 +605,8 @@ export default function DailyQuiz() {
                                 <li>You have **{formatTime(MAX_TIME_SECONDS)}** minutes to complete the quiz.</li>
                                 <li>**Only one submission is permitted per Registration ID** for this day.</li>
                             </ul>
+                            
+                            {/* ⭐ REMOVED TIMER DISPLAY FROM HERE ⭐
                             {quizStarted && (
                                 <div className="quiz-timer-container">
                                     <Clock size={20} style={{ marginRight: '8px' }} />
@@ -558,6 +618,8 @@ export default function DailyQuiz() {
                                     </div>
                                 </div>
                             )}
+                            */}
+                            
                         </div>
 
                         <p className="description text-sm text-gray-600 mb-4" style={{ fontWeight: 600 }}>
@@ -657,6 +719,13 @@ export default function DailyQuiz() {
                         </div>
                     )}
                 </main>
+                
+                {/* ⭐ CALL NEW FLOATING TIMER COMPONENT HERE ⭐ */}
+                <FloatingTimer 
+                    secondsLeft={secondsLeft} 
+                    quizStarted={quizStarted} 
+                    submissionCompleted={submissionCompleted}
+                />
             </div>
         </>
     );
