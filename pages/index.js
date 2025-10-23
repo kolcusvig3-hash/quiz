@@ -73,7 +73,7 @@ export default function Home() {
             <li><span style={{fontWeight: '600'}}>Daily Quiz:</span> A new set of 10 questions (MCQ) is released daily at 12:00 PM IST and remains available upto 05:00 PM IST that day.</li>
             <li><span style={{fontWeight: '600'}}>Submission:</span> Use your Registration ID to submit your answer on the <Link href={CONFIG.DAILY_MYSTERY_PATH} style={{color: 'var(--action-color-blue)', textDecoration: 'underline'}}>Daily Quiz Page</Link>. During the period from <span style={{color: 'red'}}>27-10-2025 to 30-10-2025 12PM-05PM</span></li>
             <li><span style={{fontWeight: '600'}}>Instructions:</span> After you put your Registration ID and press "Verify and Start", your Reg ID will be verified and a 05 Minute timer will start and 10 MCQs will appear. Answer all the questions and press submit within the time limit. </li>
-            <li><span style={{fontWeight: '600'}}>Scoring:</span> Correct answers are awarded points, and an updated leaderboard is posted daily. Promptness in answering attracts additional bonus points.</li>
+            <li><span style={{fontWeight: '600'}}>Scoring:</span> Correct answers are awarded points, and an updated leaderboard is posted daily. Promptness in answering attracts additional bonus points.<span style={{color: 'green'}}>The final ranking for this **four-day long quiz competition** will be based on the **Cumulative Total Score** secured by the participant across all four days (D1 to D4).</span></li>
         </ol>
 
         {/* Countdown to Next Mystery Card */}
