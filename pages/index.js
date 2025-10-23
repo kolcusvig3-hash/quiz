@@ -79,7 +79,7 @@ export default function Home() {
         {/* Countdown to Next Mystery Card */}
         <hr className="divider" style={{border: 'none', borderTop: '1px solid #eee', margin: '20px 0'}} />
             
-        <h3 className="card-subtitle" style={{textAlign: 'center'}}>Next Mystery Starts In</h3>
+        <h3 className="card-subtitle" style={{textAlign: 'center'}}>Next Quiz Starts In</h3>
         {/* Use the conditional display variable */}
         <p className="countdown-timer">{countdownDisplay}</p>
         

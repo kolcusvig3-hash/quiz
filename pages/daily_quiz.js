@@ -676,12 +676,16 @@ useEffect(() => {
                             </div>
                         )}
                         {quizStarted && !submissionCompleted && <p className="success-note text-center">Registration verified. Quiz is now active below. **DO NOT REFRESH.**</p>}
-                        {submissionCompleted && <p className="text-lg font-semibold text-green-600 p-3 bg-green-50 rounded-lg w-full text-center mt-4">✅ Submission Completed.</p>}
+                        {submissionCompleted && <div className="text-lg font-semibold text-green-600 p-3 bg-green-50 rounded-lg w-full text-center mt-4">
+                            <h2>✅ Thank you!</h2>
+                            <p>Your answers have been successfully submitted.</p>
+                            <p>Please close this tab or return to the main page.</p>
+                        </div>}
 
                     </section>
 
                     {/* Quiz Section - Visible only when started */}
-                    {quizStarted && (
+                    {quizStarted && !submissionCompleted &&(
                         <div className="quiz-card">
                             
                             {/* Questions List */}
