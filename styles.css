@@ -424,6 +424,7 @@ body {
 .leaderboard-table thead th {
     text-align: left;
     color: #555; /* Dark gray text */
+    background-color: #1ee2ec2f;
     font-size: 0.85rem;
     font-weight: 600;
     padding: 10px 0; /* Vertical spacing for header row */
@@ -453,7 +454,7 @@ body {
 
 /* Top 3 Highlighting (Matching the screenshot's light gold background) */
 .leaderboard-table tbody tr.top-3 {
-    background-color: #FFFBEB; /* Very light yellow/gold background */
+    background-color: #f7dc7170; /* Very light yellow/gold background */
     font-weight: 600;
 }
 
