@@ -66,7 +66,8 @@ export default function Leaderboard() {
     <main className="container">
       <h1 className="page-title">Leaderboard</h1>
       <p className="page-subtitle">
-        Scores updated till: <strong>27-10-2025 12:15 PM</strong>.
+        {/* Scores updated till: <strong>27-10-2025 12:15 PM</strong>. */}
+        Updated Scores
       </p>
 
       <div className="leaderboard-card">
