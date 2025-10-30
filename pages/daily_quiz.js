@@ -166,7 +166,7 @@ useEffect(() => {
     const now = new Date();
     const hoursIST = now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false });
     const currentHour = parseInt(hoursIST, 10);
-    setIsRegInputActive(currentHour >= 12 && currentHour < 17); // Active between 12 PM and 5 PM IST
+    setIsRegInputActive(currentHour >= 14 && currentHour < 17); // Active between 12 PM and 5 PM IST
   };
   
   checkTimeWindow();
@@ -641,7 +641,7 @@ useEffect(() => {
                             <div className="flex flex-col md:flex-row items-end gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                                 <div className="input-area flex-grow w-full">
   <label htmlFor="regId" className="block text-sm font-medium text-gray-700 mb-1">
-    Registration ID <span className="text-gray-500 text-xs">(Active between 12 PM – 5 PM only)</span>
+    Registration ID <span className="text-gray-500 text-xs">(Temporarily freezed till 02 PM)</span>
   </label>
   <input
     id="regId"
