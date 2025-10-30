@@ -103,7 +103,9 @@ export default function Home() {
 
         <div>
             <h3 className="card-subtitle">Latest Winners</h3>
-            <p className="description">Top performers will be announced here after the conclusion of the event.</p>
+            <p className="description">1. UTTARAN CHOWDHURY, Preventive Officer from RTI CELL (AP & ACC)</p>
+            <p className="description">2. AASHISH KISHORE, Examiner from AG Unit</p>
+            <p className="description">3. KAILASH KUMAR CHOURASIYA , Superintendent from SIIB port</p>
         </div>
       </div>
     </main>
