@@ -7,6 +7,7 @@ import { Clock, Send, AlertTriangle, CheckCircle } from 'lucide-react';
 // --- CONSTANTS ---
 const MAX_TIME_SECONDS = 300; // 5 minutes
 const REG_ID_COLUMN_INDEX = 5; // Column F in REGISTRATION_SHEET_CSV (Assuming 0-indexed)
+const EMAIL_COLUMN_INDEX = 2; // Assuming Email ID is in the 3rd column (index 2)
 const DUPLICATE_REG_ID_INDEX = 1; // Column B in SUBMISSION_SHEET_CSV (Assuming 0-indexed)
 const DUPLICATE_DAY_CODE_INDEX = 2; // Column C in SUBMISSION_SHEET_CSV (Assuming 0-indexed)
 
@@ -166,7 +167,7 @@ useEffect(() => {
     const now = new Date();
     const hoursIST = now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', hour12: false });
     const currentHour = parseInt(hoursIST, 10);
-    setIsRegInputActive(currentHour >= 14 && currentHour < 17); // Active between 12 PM and 5 PM IST
+    setIsRegInputActive(currentHour >= 12 && currentHour < 17); // Active between 12 PM and 5 PM IST
   };
   
   checkTimeWindow();
@@ -183,6 +184,7 @@ useEffect(() => {
     
     // State for user input and form status
     const [regId, setRegId] = useState('');
+    const [emailId, setEmailId] = useState('');
     const [answers, setAnswers] = useState(Array(10).fill('')); // Q1 to Q10
     
     // State for quiz control
@@ -217,75 +219,78 @@ useEffect(() => {
         setMessageModal(prev => ({ ...prev, isVisible: false }));
     };
 
-    // --- CHECK LOGIC (Unchanged) ---
+    // ✅ Updated validation function
+const validateRegId = async () => {
+    if (!window.Papa) {
+        setMessageModal({
+            isVisible: true,
+            title: 'Library Missing',
+            content: 'CSV parsing library (PapaParse) is not loaded.',
+            isError: true,
+        });
+        return false;
+    }
 
-    /**
-     * Checks if the Reg ID is registered against the published CSV.
-     */
-    const validateRegId = async () => {
-        if (!window.Papa) {
-             setMessageModal({
-                 isVisible: true,
-                 title: 'Library Missing',
-                 content: 'CSV parsing library (PapaParse) is not loaded. Please ensure the script tag is working.',
-                 isError: true,
-             });
-             return false;
-        }
+    if (!regId || !emailId) {
+        setMessageModal({
+            isVisible: true,
+            title: 'Missing Details',
+            content: 'Please enter both Registration ID and Email ID.',
+            isError: true,
+        });
+        return false;
+    }
 
-        setIsValidating(true);
-        
-        try {
-            const response = await fetch(CONFIG.REGISTRATION_SHEET_CSV);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const csvText = await response.text();
+    setIsValidating(true);
+    try {
+        const response = await fetch(CONFIG.REGISTRATION_SHEET_CSV);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const csvText = await response.text();
 
-            let found = false;
-            
-            // PapaParse is synchronous here, which is fine for small files
-            window.Papa.parse(csvText, {
-                header: false,
-                skipEmptyLines: true,
-                complete: function(results) {
-                    const trimmedRegId = regId.trim();
-                    // Assuming REG_ID_COLUMN_INDEX is the 6th column (F, index 5)
-                    for (const row of results.data) {
-                        // Ensure the row has enough columns and the Reg ID column value matches
-                        if (row.length > REG_ID_COLUMN_INDEX && row[REG_ID_COLUMN_INDEX] && String(row[REG_ID_COLUMN_INDEX]).trim() === trimmedRegId) {
-                            found = true;
-                            break;
-                        }
+        let found = false;
+        window.Papa.parse(csvText, {
+            header: false,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const trimmedRegId = regId.trim();
+                const trimmedEmail = emailId.trim().toLowerCase();
+                for (const row of results.data) {
+                    if (
+                        row.length > Math.max(REG_ID_COLUMN_INDEX, EMAIL_COLUMN_INDEX) &&
+                        String(row[REG_ID_COLUMN_INDEX]).trim() === trimmedRegId &&
+                        String(row[EMAIL_COLUMN_INDEX]).trim().toLowerCase() === trimmedEmail
+                    ) {
+                        found = true;
+                        break;
                     }
                 }
-            });
-
-            setIsValidating(false);
-
-            if (found) {
-                return true;
-            } else {
-                setMessageModal({
-                    isVisible: true,
-                    title: 'Validation Failed',
-                    content: `Registration ID "${regId}" was not found in the approved list. Please check for typos.`,
-                    isError: true,
-                });
-                return false;
             }
+        });
 
-        } catch (error) {
-            console.error('Registration List Fetch/Parse Error:', error);
-            setIsValidating(false);
+        setIsValidating(false);
+        if (found) return true;
+        else {
             setMessageModal({
                 isVisible: true,
-                title: 'Network Error',
-                content: 'Could not connect to the registration list for validation. Please check your network.',
+                title: 'Validation Failed',
+                content: `Registration ID and Email ID do not match or are not found in the approved list.`,
                 isError: true,
             });
             return false;
         }
-    };
-    
+    } catch (error) {
+        console.error('Validation error:', error);
+        setIsValidating(false);
+        setMessageModal({
+            isVisible: true,
+            title: 'Network Error',
+            content: 'Could not connect to the registration list. Please check your network.',
+            isError: true,
+        });
+        return false;
+    }
+};
+   
     /**
      * Checks if the Reg ID and DayCode combination has already been submitted.
      */
@@ -637,44 +642,68 @@ useEffect(() => {
                         </p>
                         
                         {/* Registration Input/Button Area */}
-                        {!quizStarted && !submissionCompleted && (
-                            <div className="flex flex-col md:flex-row items-end gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                                <div className="input-area flex-grow w-full">
-  <label htmlFor="regId" className="block text-sm font-medium text-gray-700 mb-1">
-    Registration ID <span className="text-gray-500 text-xs">(Temporarily freezed till 02 PM)</span>
-  </label>
-  <input
-    id="regId"
-    className="input"
-    type="text"
-    placeholder="Enter registration ID"
-    value={regId}
-    onChange={(e) => setRegId(e.target.value.toUpperCase().trim())}
-    disabled={
-      quizStarted ||
-      submissionCompleted ||
-      isValidating ||
-      isSubmitting ||
-      !isRegInputActive // <-- disables input outside 12–5 PM
-    }
-    required
-  />
-  {!isRegInputActive && (
-    <p className="text-sm text-red-500 mt-1">
-      Registration input is currently inactive. Please enter between 12 PM – 5 PM IST.
-    </p>
-  )}
-</div>
+{!quizStarted && !submissionCompleted && (
+  <div className="flex flex-col md:flex-row items-end gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+    <div className="input-area flex-grow w-full">
+      <label htmlFor="regId" className="block text-sm font-medium text-gray-700 mb-1">
+        Registration ID <span className="text-gray-500 text-xs">(un-freezed after 02 PM)</span>
+      </label>
+      <input
+        id="regId"
+        className="input"
+        type="text"
+        placeholder="Enter registration ID"
+        value={regId}
+        onChange={(e) => setRegId(e.target.value.toUpperCase().trim())}
+        disabled={
+          quizStarted ||
+          submissionCompleted ||
+          isValidating ||
+          isSubmitting ||
+          !isRegInputActive // <-- disables input outside 12–5 PM
+        }
+        required
+      />
+      {!isRegInputActive && (
+        <p className="text-sm text-red-500 mt-1">
+          Registration input is currently inactive. Please enter between 12 PM – 5 PM IST.
+        </p>
+      )}
+    </div>
 
-                                <button 
-                                    className="w-full md:w-auto mt-2 md:mt-0"
-                                    onClick={handleStartQuiz} 
-                                    disabled={!regId || isValidating || isSubmitting}
-                                >
-                                    {isValidating ? 'Verifying...' : 'Verify & Start'}
-                                </button>
-                            </div>
-                        )}
+    {/* ✅ New Email ID Field */}
+    <div className="input-area flex-grow w-full">
+      <label htmlFor="emailId" className="block text-sm font-medium text-gray-700 mb-1">
+        Registered Email ID
+      </label>
+      <input
+        id="emailId"
+        className="input"
+        type="email"
+        placeholder="Enter registered Email ID"
+        value={emailId}
+        onChange={(e) => setEmailId(e.target.value.trim())}
+        disabled={
+          quizStarted ||
+          submissionCompleted ||
+          isValidating ||
+          isSubmitting ||
+          !isRegInputActive
+        }
+        required
+      />
+    </div>
+
+    <button
+      className="w-full md:w-auto mt-2 md:mt-0"
+      onClick={handleStartQuiz}
+      disabled={!regId || !emailId || isValidating || isSubmitting}
+    >
+      {isValidating ? 'Verifying...' : 'Verify & Start'}
+    </button>
+  </div>
+)}
+
                         {quizStarted && !submissionCompleted && <p className="success-note text-center">Registration verified. Quiz is now active below. **DO NOT REFRESH.**</p>}
                         {submissionCompleted && <div className="text-lg font-semibold text-green-600 p-3 bg-green-50 rounded-lg w-full text-center mt-4">
                             <h2>✅ Thank you!</h2>
