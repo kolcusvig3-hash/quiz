@@ -5,21 +5,21 @@ import { CONFIG } from '../config'
 
 // Import all required pages
 import Home from './index'
-// import Register from './register'
+import Register from './register'
 import Leaderboard from './leaderboard'
-// import DailyQuiz from './daily_quiz' // New Import
+import DailyQuiz from './daily_quiz' // New Import
 
 // Simple custom router based on window.location.pathname
 const Router = ({ path, pageProps }) => {
   switch (path) {
     case '/':
       return <Home {...pageProps} />
-    // case '/register':
-    //   return <Register {...pageProps} />
+    case '/register':
+      return <Register {...pageProps} />
     case '/leaderboard':
       return <Leaderboard {...pageProps} />
-    // case CONFIG.DAILY_MYSTERY_PATH: // New Case for Daily Quiz
-    //   return <DailyQuiz {...pageProps} />
+    case CONFIG.DAILY_MYSTERY_PATH: // New Case for Daily Quiz
+      return <DailyQuiz {...pageProps} />
     default:
       // Simple 404 handler
       return (

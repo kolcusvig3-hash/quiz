@@ -1,113 +1,125 @@
-
-import { useEffect, useState } from 'react';
-import { CONFIG, getCurrentDayCode } from '../config'; // Import getCurrentDayCode
-import Link from 'next/link';
+import React from 'react';
+import { CONFIG } from '../config';
 
 export default function Home() {
-  // Initialize with a static value for server-side rendering
-  const [countdown, setCountdown] = useState('Loading...'); 
-  // Add state to track if we have mounted on the client
-  const [isClient, setIsClient] = useState(false); 
+  const summary = {
+    theme: "Vigilance: Our Shared Responsibility",
+    dates: "October 27 to October 30, 2025",
+    participants: 140,
+    sections: 39,
+    technology: [
+      "Frontend & Backend: Next.js & Google Apps Script (AppScript)",
+      "Data Collection: Embedded Google Forms",
+      "Database: Google Sheets",
+    ],
+    winners: [
+      { rank: 1, name: "UTTARAN CHOWDHURY", designation: "Preventive Officer from RTI CELL (AP & ACC)" },
+      { rank: 2, name: "AASHISH KISHORE", designation: "Examiner from AG Unit" },
+      { rank: 3, name: "KAILASH KUMAR CHOURASIYA", designation: "Superintendent from SIIB port" },
+    ]
+  };
 
-  const currentDayCode = getCurrentDayCode(); // Get the current active quiz day
-
-  useEffect(() => {
-    // 1. Set isClient to true immediately upon mount.
-    setIsClient(true); 
-    
-    // Target date is pulled from CONFIG
-    const target = new Date(CONFIG.NEXT_MYSTERY_ISO).getTime();
-    
-    // We define the interval ID here so the cleanup function can access it.
-    let timer; 
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = target - now;
-      
-      if (diff <= 0) {
-        setCountdown('Mystery live now!');
-        clearInterval(timer);
-        return;
-      }
-      
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-      const pad = (num) => (num < 10 ? '0' + num : num);
-      
-      setCountdown(`${pad(days)}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`);
-    }
-
-    // Initial tick to display time immediately
-    updateCountdown();
-    // Start the interval
-    timer = setInterval(updateCountdown, 1000);
-    
-    // Cleanup function
-    return () => clearInterval(timer);
-  }, []);
-  
-  // Conditional rendering: use static value on server, dynamic value on client
-  const countdownDisplay = isClient ? countdown : 'Loading...';
-  
   return (
     <main className="container">
-      {/* Hero Section Card */}
-      <div className="hero-card card">
-        <h1 className="hero-title">Welcome to the {CONFIG.SITE_TITLE}</h1>
-        <p className="hero-description">The Integrity Quiz is a fun, daily quiz designed to promote vigilance awareness. Participate daily to test your knowledge and climb the leaderboard!</p>
+      {/* Quiz Summary Card */}
+      <div className="hero-card card" style={{ padding: '35px' }}>
+        <h1 className="card-title" style={{ textAlign: 'center', fontSize: '2.2rem' }}>
+          🎊 Integrity Quiz 2025 - Event Concluded 🎊
+        </h1>
         
-        <div className="link-button-group">
-          <Link href="/register" className="link-btn primary mr-4">Register Now</Link>
-          <Link href="/leaderboard" className="link-btn secondary">View Leaderboard</Link>
-        </div>
+        <hr className="divider" style={{ border: 'none', borderTop: '1px solid #eee', margin: '25px 0' }} />
 
-        {/* The Rules Section is integrated here as requested by user's theme context */}
-        <hr className="divider" style={{border: 'none', borderTop: '1px solid #eee', margin: '20px 0'}} />
-        
-        <h2 className="card-title" style={{textAlign: 'center', marginBottom: '10px'}}>How to Participate</h2>
-        <ol className="rules-list">
-            <li><span style={{fontWeight: '600'}}>Registration:</span> All participants must register (GMAIL preferred) to receive a unique Registration ID.</li>
-            <li><span style={{fontWeight: '600'}}>Daily Quiz:</span> A new set of 10 questions (MCQ) is released daily at 12:00 PM IST and remains available upto 05:00 PM IST that day.</li>
-            <li><span style={{fontWeight: '600'}}>Submission:</span> Use your Registration ID to submit your answer on the <Link href={CONFIG.DAILY_MYSTERY_PATH} style={{color: 'var(--action-color-blue)', textDecoration: 'underline'}}>Daily Quiz Page</Link>. During the period from <span style={{color: 'red'}}>27-10-2025 to 30-10-2025 12PM-05PM</span></li>
-            <li><span style={{fontWeight: '600'}}>Instructions:</span> After you put your Registration ID and press "Verify and Start", your Reg ID will be verified and a 05 Minute timer will start and 10 MCQs will appear. Answer all the questions and press submit within the time limit. </li>
-            <li><span style={{fontWeight: '600'}}>Scoring:</span> Correct answers are awarded points (2.5 for each correct answer), and an updated leaderboard is posted daily. Promptness in answering attracts bonus points — you earn 3 points if you submit within the first second, with the bonus decreasing linearly by 0.01 points for each additional second up to 5 minutes (300 seconds).<span style={{color: 'green'}}>The final ranking for this **four-day long quiz competition** will be based on the **Cumulative Total Score** secured by the participant across all four days (D1 to D4).</span></li>
-        </ol>
-
-        {/* Countdown to Next Mystery Card */}
-        <hr className="divider" style={{border: 'none', borderTop: '1px solid #eee', margin: '20px 0'}} />
-            
-        <h3 className="card-subtitle" style={{textAlign: 'center'}}>Next Quiz Starts In</h3>
-        {/* Use the conditional display variable */}
-        <p className="countdown-timer">{countdownDisplay}</p>
-        
-        {/* New link button below the countdown */}
-        <div className="link-button-group" style={{justifyContent: 'center'}}>
-          <Link href={CONFIG.DAILY_MYSTERY_PATH} className="link-btn">Go to Daily Quiz</Link>
-        </div>
-            
-      </div>
-
-      {/* Contact & Winners Card */}
-      <div className="info-card">
-        <h2 className="card-title">Contact & Winners</h2>
-        <div style={{ marginBottom: '20px' }}>
-            <h3 className="card-subtitle">Contact</h3>
-            <p className="description">Vigilance Unit — Kolkata Customs</p>
-            <p className="description">Email: <a href="mailto:vigilance.kol@nic.in" style={{color: 'var(--action-color-blue)'}}>vigilance.kol@nic.in</a></p>
+        {/* Vigilance Awareness Week Context */}
+        <div style={{ marginBottom: '30px' }}>
+          <p className="description" style={{ fontSize: '1.1rem', textAlign: 'center', lineHeight: '1.8' }}>
+            The **Integrity Quiz** was successfully conducted as a part of the digital initiatives during **Vigilance Awareness Week 2025**, observed under the theme: 
+            <br />
+            <strong style={{ color: 'var(--accent-color-gold)', fontSize: '1.3rem' }}>"{summary.theme}"</strong>
+          </p>
+          <p className="description" style={{ textAlign: 'center', marginTop: '10px', color: '#666' }}>
+            Held from {summary.dates}.
+          </p>
         </div>
 
-        <hr className="divider" style={{border: 'none', borderTop: '1px solid #eee', margin: '20px 0'}} />
-
-        <div>
-            <h3 className="card-subtitle">Latest Winners</h3>
-            <p className="description">1. UTTARAN CHOWDHURY, Preventive Officer from RTI CELL (AP & ACC)</p>
-            <p className="description">2. AASHISH KISHORE, Examiner from AG Unit</p>
-            <p className="description">3. KAILASH KUMAR CHOURASIYA , Superintendent from SIIB port</p>
+        {/* Participation Statistics */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-around', 
+          textAlign: 'center', 
+          margin: '20px 0',
+          padding: '15px 0',
+          backgroundColor: 'var(--surface-light)',
+          borderRadius: 'var(--radius)'
+        }}>
+          <div>
+            <p className="card-subtitle" style={{ margin: '0 0 5px 0', color: 'var(--primary-color)' }}>Total Participants</p>
+            <p style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--action-color-blue)' }}>{summary.participants}</p>
+          </div>
+          <div>
+            <p className="card-subtitle" style={{ margin: '0 0 5px 0', color: 'var(--primary-color)' }}>Sections/Units</p>
+            <p style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--action-color-blue)' }}>{summary.sections}</p>
+          </div>
         </div>
       </div>
+      
+      {/* Technology and Winners Section */}
+      <div className="info-card" style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+
+        {/* Technology Used */}
+        <div className="card">
+          <h2 className="card-title">💻 Technology Used</h2>
+          <p className="description" style={{ marginBottom: '15px' }}>
+            The quiz portal was developed using modern web technologies to ensure a smooth and engaging user experience:
+          </p>
+          <ul className="rules-list" style={{ listStyle: 'none', paddingLeft: '0' }}>
+            {summary.technology.map((tech, index) => (
+              <li key={index} style={{ marginBottom: '8px', color: '#555', fontWeight: '500' }}>
+                <span style={{ color: 'var(--primary-color)', marginRight: '5px' }}>•</span> {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Latest Winners */}
+        <div className="card">
+          <h2 className="card-title">🏆 Top Winners</h2>
+          <p className="description" style={{ marginBottom: '15px' }}>
+            Congratulations to the top performers based on the Cumulative Total Score across the four-day competition!
+          </p>
+          <ol style={{ paddingLeft: '20px' }}>
+            {summary.winners.map((winner) => (
+              <li 
+                key={winner.rank} 
+                className={`description`} 
+                style={{ 
+                  fontWeight: winner.rank === 1 ? '700' : '600', 
+                  color: winner.rank <= 3 ? 'var(--primary-color)' : '#333',
+                  marginBottom: '12px',
+                  padding: '5px 0',
+                  borderBottom: winner.rank < summary.winners.length ? '1px dotted #eee' : 'none'
+                }}
+              >
+                <span style={{ color: winner.rank === 1 ? 'var(--accent-color-gold)' : 'var(--action-color-blue)' }}>{winner.name}</span>, {winner.designation}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+      
+      {/* Contact Section - Separate Card for prominence */}
+      <div className="card" style={{ marginTop: '20px', textAlign: 'center', borderTop: '4px solid var(--accent-color-gold)' }}>
+        <h2 className="card-title" style={{ marginTop: '5px' }}>📧 Contact & Suggestions</h2>
+        <p className="description">
+          We welcome your feedback and suggestions for future quizzes.
+        </p>
+        <div style={{ marginTop: '20px' }}>
+            <h3 className="card-subtitle" style={{ margin: '0' }}>Vigilance Unit — Kolkata Customs</h3>
+            <p className="description" style={{ margin: '5px 0 0 0' }}>
+              Email: <a href="mailto:vigilance.kol@nic.in" style={{ color: 'var(--action-color-blue)', textDecoration: 'underline', fontWeight: '600' }}>vigilance.kol@nic.in</a>
+            </p>
+        </div>
+      </div>
+
     </main>
   );
 }
