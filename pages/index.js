@@ -115,7 +115,7 @@ export default function Home() {
         <div style={{ marginTop: '20px' }}>
             <h3 className="card-subtitle" style={{ margin: '0' }}>Vigilance Unit — Kolkata Customs</h3>
             <p className="description" style={{ margin: '5px 0 0 0' }}>
-              Email: <a href="mailto:vigilance.kol@nic.in" style={{ color: 'var(--action-color-blue)', textDecoration: 'underline', fontWeight: '600' }}>vigilance.kol@nic.in</a>
+              Email: <a href="mailto:kolcusvig3@gmail.com" style={{ color: 'var(--action-color-blue)', textDecoration: 'underline', fontWeight: '600' }}>kolcusvig3@gmail.com</a>
             </p>
         </div>
       </div>
