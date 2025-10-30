@@ -8,10 +8,14 @@ function parseCSV(text) {
   if (!lines.length) return { header: [], rows: [] }
   
   // Split header row by comma, removing surrounding quotes and trimming
-  const header = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim())
+  let header = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim())
   
   // Split data rows by comma, removing surrounding quotes and trimming
-  const rows = lines.slice(1).map(l => l.split(',').map(c => c.replace(/^"|"$/g, '').trim()))
+  let rows = lines.slice(1).map(l => l.split(',').map(c => c.replace(/^"|"$/g, '').trim()))
+  
+  // ✅ Discard the 3rd column (index 2) from both header and rows
+  header = header.filter((_, i) => i !== 2)
+  rows = rows.map(r => r.filter((_, i) => i !== 2))
   
   return { header, rows }
 }
@@ -22,8 +26,8 @@ function formatDateIST(d) {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
-    timeZone: 'Asia/Kolkata', // Set explicitly to IST/Kolkata
-  }).replace(/,/, '') // Remove comma often added by locale
+    timeZone: 'Asia/Kolkata',
+  }).replace(/,/, '')
 }
 
 export default function Leaderboard() {
@@ -57,7 +61,6 @@ export default function Leaderboard() {
     load()
   }, [])
 
-  // Calculate the 'Till Date' (yesterday's date)
   const yesterday = new Date()
   yesterday.setDate(yesterday.getDate() - 1)
   const tillDate = formatDateIST(yesterday)
@@ -66,7 +69,6 @@ export default function Leaderboard() {
     <main className="container">
       <h1 className="page-title">Leaderboard</h1>
       <p className="page-subtitle">
-        {/* Scores updated till: <strong>27-10-2025 12:15 PM</strong>. */}
         Updated Scores
       </p>
 
